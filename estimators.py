@@ -49,14 +49,13 @@ class cPCA:
         
 
     def fit(self, data, n_neighbors = 20, alpha = 10, beta = 0.95, P = 0.95, noise = False): # O(n*k + n^2*log(n))
+        print(1, end="")
         data = np.array(data)
         n = data.shape[0]
         self.D = distance.cdist(data, data, 'euclidean')
         F = self.mininmum_set_cover(data, n_neighbors)
         dims = []
 
-        print(len(F))
-        
         for ids in F:
             cur_data = np.zeros((len(ids), data.shape[1])) 
             cur_data = np.array(data[ids])
